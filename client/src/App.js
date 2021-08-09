@@ -5,11 +5,12 @@ import './App.css';
 
 import InputTodo from './components/InputTodo';
 
-import ListTodo from './components/ListTodo';
+import ListTodo from './components/ListTodos';
 function App() {
   return <Fragment>
     <div className="container">
       <InputTodo />
+      <ListTodo/>
     </div>
   </Fragment>;
 }
