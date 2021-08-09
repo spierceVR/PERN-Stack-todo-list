@@ -6,12 +6,12 @@ const InputTodo = () => {
     const [description, setDescription] = useState("New todo...");
 
     const onSubmitForm = async e => {
-        e.preventDefault(); 
+        e.preventDefault();
         try {
-            const body = {description};
-            const response = await fetch("http://localhost:5000/todos",{
+            const body = { description };
+            const response = await fetch("http://localhost:5000/todos", {
                 method: "POST",
-                headers: {"Content-Type": "application/json"},
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(body)
             });
             e.target.value = "New todo...";
@@ -23,8 +23,8 @@ const InputTodo = () => {
     return (
         <Fragment>
             <h1 className="text-center mt-5">PERN Input Todo</h1>
-            <form className="d-flex mt-5" onClick={e=>{e.target.value = ""}}
-                onBlur={e=>{e.target.value = "New todo..."}} 
+            <form className="d-flex mt-5" onClick={e => { e.target.value = "" }}
+                onBlur={e => { e.target.value = "New todo..." }}
                 onSubmit={onSubmitForm}>
                 <input type="text" className="form-control" value={description} onChange={e => setDescription(e.target.value)} />
                 <button className="btn btn-success">Add</button>

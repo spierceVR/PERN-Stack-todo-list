@@ -1,22 +1,22 @@
-import React, { Fragment , useState} from "react";
+import React, { Fragment, useState } from "react";
 
-const EditTodo = ({todo}) => {
-    
+const EditTodo = ({ todo }) => {
+
     const [description, setDescription] = useState(todo.description);
 
     const updateDescription = async (e) => {
         e.preventDefault();
         try {
-            const body = {description};
-            const response = await fetch(`http://localhost:5000/todos/${todo.todo_id}`,{
-                method : "PUT",
-                headers: {"Content-Type": "application/json"},
+            const body = { description };
+            const response = await fetch(`http://localhost:5000/todos/${todo.todo_id}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(body)
             });
             // reloads the page
             window.location = "/";
         } catch (error) {
-           console.error(error.message); 
+            console.error(error.message);
         }
     }
 
@@ -24,9 +24,9 @@ const EditTodo = ({todo}) => {
         <Fragment>
             {/* Button to Open the Modal */}
             <button type="button"
-             class="btn btn-warning" 
-             data-toggle="modal" 
-             data-target={`#id${todo.todo_id}`}>
+                class="btn btn-warning"
+                data-toggle="modal"
+                data-target={`#id${todo.todo_id}`}>
                 Edit
             </button>
 
@@ -41,18 +41,18 @@ const EditTodo = ({todo}) => {
 
                             {/* Modal close button (X) */}
                             <button type="button"
-                             class="close text-danger" 
-                             data-dismiss="modal"
-                             onClick={()=> setDescription(todo.description)}>
+                                class="close text-danger"
+                                data-dismiss="modal"
+                                onClick={() => setDescription(todo.description)}>
                                 &times;
-                             </button>
+                            </button>
                         </div>
 
                         {/* Modal body */}
                         <div class="modal-body">
                             <input type="text" className="form-control" value={description} onChange={e => {
-                               setDescription(e.target.value)
-                            }}/>
+                                setDescription(e.target.value)
+                            }} />
                         </div>
 
                         {/* Modal footer */}
@@ -60,9 +60,9 @@ const EditTodo = ({todo}) => {
                             <button type="button"
                                 class="btn btn-warning"
                                 data-dismiss="modal"
-                                onClick= {e => updateDescription(e)}>
-                                    Edit
-                                </button>
+                                onClick={e => updateDescription(e)}>
+                                Edit
+                            </button>
                         </div>
 
 
